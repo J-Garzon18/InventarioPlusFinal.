@@ -109,25 +109,6 @@ header {
     
 }
 
-.img_uno{
-    max-width: 100%; 
-    height: auto; 
-    object-fit: cover
-    mask-image;
-    linear-gradient(to top, transparent, black 10%),
-    linear-gradient(to bottom, transparent, black 10%),
-    linear-gradient(to left, transparent, black 40%),
-    linear-gradient(to right, transparent, black 10%);
-  mask-composite: intersect;
-  -webkit-mask-image: 
-    linear-gradient(to top, transparent, black 10%),
-    linear-gradient(to bottom, transparent, black 10%),
-    linear-gradient(to left, transparent, black 10%),
-    linear-gradient(to right, transparent, black 10%);
-  -webkit-mask-composite: destination-in;
-
-}
-
 /*Cards beneficios*/
 
 .cards{
@@ -292,3 +273,4 @@ footer {
     align-items: center;
     
 }
+
