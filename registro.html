@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario Plus/Registros</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="form-register">
+
+    <header>
+  <div class="header-container">
+    <h1 class="titulo"><a href="index.html">Inventario plus</a></h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="#¿Quienes somos?">¿Quienes somos?</a></li>
+        <li><a href="#Objetivos">Objetivos</a></li>
+        <li><a href="#¿Por qué elegirnos?">¿Por qué elegirnos?</a></li>
+        <li><a href="registro.html">Registro</a></li>
+        <li><a href="conectar.html">Conectate</a></li>
+      </ul>
+      <div class="menu-line"></div>
+    </nav>
+  </div>
+</header>
+<!--Formulario de registro-->
+<section class="form-register">
+  <form id="registerForm">
+
+    <h2>Formulario Registro</h2>
+    <h4>Nombre:</h4>
+    <input class="controles" type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre completo"> 
+    
+    <h4>Email:</h4>
+    <input class="controles" type="text" name="Email" id="email" placeholder="Ingrese su Email">
+
+    <h4>Contraseña:</h4>
+    <input class="controles" type="text" name="password" id="passW" placeholder="Ingrese su nombre contraseña">
+
+    <h4>verifique contraseña:</h4>
+    <input class="controles" type="text" name="valPassword" id="vPassW" placeholder="Verifique su contraseña">  
+
+    <input class="boton" type="submit" name="nombre" value="registrar"> 
+    <p><a href="conectar.html">Ya tengo una cuenta</a></p>
+
+  </form>
+</section>
+<script>
+  document.querySelector('.form-register').addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const user_name = document.getElementById("nombre").value;
+    const user_email = document.getElementById("email").value;
+    const user_password = document.getElementById("passW").value;
+    const user_valPassword = document.getElementById("vPassW").value;
+
+    if (user_password !== user_valPassword) {
+      alert("Las contraseñas no coinciden");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://127.0.0.1:3000/api/usuarios/registro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_name,
+          user_email,
+          user_password
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Usuario Registrado Correctamente");
+        // Redireccionar o limpiar formulario si quieres
+      } else {
+        alert("Error: " + data.message);
+      }
+
+    } catch (error) {
+      alert("Error de conexión con el servidor");
+      console.error(error);
+    }
+  });
+</script>
+
+
+</body>
+</html>
